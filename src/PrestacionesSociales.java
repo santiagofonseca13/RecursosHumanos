@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import javax.swing.JPanel;
 
-/**
- *
- * @author Santiago
- */
-public class PrestacionesSociales {
-    private double cesantias, interesesCesantias, primaVacacional, primaServicios, pension;
+public class PrestacionesSociales extends JPanel {
+	private double cesantias, interesesCesantias, primaVacacional, primaServicios, pension;
 
-    public PrestacionesSociales() {
-    }
+	/**
+	 * Create the panel.
+	 */
+	public PrestacionesSociales() {
 
-    public PrestacionesSociales(double cesantias, double interesesCesantias, double primaVacacional, double primaServicios, double pension) {
+	}
+	public PrestacionesSociales(double cesantias, double interesesCesantias, double primaVacacional, double primaServicios, double pension) {
         this.cesantias = cesantias;
         this.interesesCesantias = interesesCesantias;
         this.primaVacacional = primaVacacional;
@@ -87,5 +83,4 @@ public class PrestacionesSociales {
         // Supongamos que la contribución a la pensión es el 10% del salario base
         this.pension = salarioBase * 0.10;
     }
-    
 }

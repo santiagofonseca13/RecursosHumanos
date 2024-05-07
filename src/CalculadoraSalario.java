@@ -1,14 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import javax.swing.JPanel;
 
-/**
- *
- * @author Santiago
- */
-public class CalculadoraSalario {
-    public static double calcularSalarioNeto(double salarioBase, double deducciones, double bonificaciones, int faltas, int diasVacaciones) {
+public class CalculadoraSalario extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public CalculadoraSalario() {
+
+	}
+	
+	public static double calcularSalarioNeto(double salarioBase, double deducciones, double bonificaciones, int faltas, int diasVacaciones) {
         double salarioNeto = salarioBase + bonificaciones - deducciones;
         double deduccionesFaltas = calcularDeduccionesPorFaltas(salarioBase, faltas);
         double deduccionesVacaciones = calcularDeduccionesPorVacaciones(salarioBase, diasVacaciones);
@@ -25,4 +26,5 @@ public class CalculadoraSalario {
         // Supongamos que cada día de vacaciones equivale a un descuento del 0.5% del salario base
         return salarioBase * 0.005 * diasVacaciones;
     }
+
 }

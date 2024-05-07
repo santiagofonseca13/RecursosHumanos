@@ -1,17 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import java.awt.Color;
 
-/**
- *
- * @author Santiago
- */
-public class Trabajador {
-    private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+
+public class Trabajador extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
     private Double Identificacion, Edad, Numero;
+    
+    public main principal;
+	
+	public Trabajador(main principal) {
+		this();
+		this.principal = principal;
+	}
 
     public Trabajador() {
+    	setBorder(new TitledBorder(null, "Linea 1", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, Color.RED));
+		setLayout(null);
     }
 
     public Trabajador(String nombres, String apellidos, String direccion, String correo, String seguro, String fondoPensionesCesantias, String RH, Double identificacion, Double edad, Double numero) {

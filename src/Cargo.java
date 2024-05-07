@@ -1,20 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+import javax.swing.JPanel;
 
-/**
- *
- * @author Santiago
- */
-public class Cargo {
-    private String nombre;
+public class Cargo extends JPanel {
+	
+	private String nombre;
     private double salario;
 
-    public Cargo() {
-    }
+	/**
+	 * Create the panel.
+	 */
+	public Cargo() {
 
-    public Cargo(String nombre, double salario) {
+	}
+	
+	public Cargo(String nombre, double salario) {
         this.nombre = nombre;
         this.salario = salario;
     }
@@ -42,4 +40,5 @@ public class Cargo {
                 ", salario=" + salario +
                 '}';
     }
+
 }
