@@ -7,10 +7,6 @@
  *
  * @author Santiago
  */
-
-
-//Prueba
-
 public class Trabajador {
     private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
     private Double Identificacion, Edad, Numero;
