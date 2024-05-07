@@ -36,7 +36,7 @@ public class Trabajador extends JPanel {
         Numero = numero;
     }
 
-    public String getNombres() {
+	public String getNombres() {
         return Nombres;
     }
 
@@ -131,4 +131,9 @@ public class Trabajador extends JPanel {
                 ", Numero=" + Numero +
                 '}';
     }
+
+	public char[] getSalario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
