@@ -9,7 +9,8 @@ public class Trabajador extends JPanel {
 	 * Create the panel.
 	 */
 	private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
-    private Double Identificacion, Edad, Numero;
+    private Double Identificacion;
+    private int Edad, Numero;
     
     public main principal;
 	
@@ -23,7 +24,7 @@ public class Trabajador extends JPanel {
 		setLayout(null);
     }
 
-    public Trabajador(String nombres, String apellidos, String direccion, String correo, String seguro, String fondoPensionesCesantias, String RH, Double identificacion, Double edad, Double numero) {
+    public Trabajador(String nombres, String apellidos, String direccion, String correo, String seguro, String fondoPensionesCesantias, String RH, Double identificacion, int edad, int numero) {
         Nombres = nombres;
         Apellidos = apellidos;
         Direccion = direccion;
@@ -100,19 +101,19 @@ public class Trabajador extends JPanel {
         Identificacion = identificacion;
     }
 
-    public Double getEdad() {
+    public int getEdad() {
         return Edad;
     }
 
-    public void setEdad(Double edad) {
+    public void setEdad(int edad) {
         Edad = edad;
     }
 
-    public Double getNumero() {
+    public int getNumero() {
         return Numero;
     }
 
-    public void setNumero(Double numero) {
+    public void setNumero(int numero) {
         Numero = numero;
     }
 

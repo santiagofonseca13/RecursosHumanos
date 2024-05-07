@@ -3,8 +3,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import javax.swing.border.TitledBorder;
+import java.awt.Color;
 
 public class main extends JFrame {
 
@@ -31,12 +33,19 @@ public class main extends JFrame {
 	 */
 	public main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 673, 478);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new TitledBorder(null, "Gestor de Recursos Humanos", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, Color.BLUE));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		contentPane.setLayout(null);
+		
+		DatosTrabajadores datosTrabajadores = new DatosTrabajadores();
+		datosTrabajadores.textFieldCelular.setLocation(340, 108);
+		datosTrabajadores.textFieldEdad.setLocation(340, 80);
+		datosTrabajadores.textFieldRH.setLocation(340, 52);
+		datosTrabajadores.textFieldIdentificacion.setLocation(340, 22);
+		datosTrabajadores.setBounds(10, 28, 500, 246);
+		contentPane.add(datosTrabajadores);
 	}
-
 }
