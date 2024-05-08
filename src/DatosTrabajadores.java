@@ -26,8 +26,6 @@ public class DatosTrabajadores extends JPanel {
 	public List<Trabajador> listaTrabajadores = new ArrayList<>();
 	public double cedula;
 	
-	//Texto de prueba
-	
 	public JTextField textFieldNombre;
 	public JTextField textFieldApellido;
 	public JTextField textFieldIdentificacion;
