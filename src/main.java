@@ -7,10 +7,14 @@ import java.awt.FlowLayout;
 import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
+import java.util.List;
 
 public class main extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public TablaEmpleados tablaEmpleados;
+	public InterPreSociales interPreSociales;
+	public DatosTrabajadores datosTrabajadores;
 
 	/**
 	 * Launch the application.
@@ -33,19 +37,32 @@ public class main extends JFrame {
 	 */
 	public main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 673, 478);
+		setBounds(100, 100, 994, 598);
 		contentPane = new JPanel();
 		contentPane.setBorder(new TitledBorder(null, "Gestor de Recursos Humanos", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, Color.BLUE));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		DatosTrabajadores datosTrabajadores = new DatosTrabajadores();
-		datosTrabajadores.textFieldCelular.setLocation(340, 108);
-		datosTrabajadores.textFieldEdad.setLocation(340, 80);
-		datosTrabajadores.textFieldRH.setLocation(340, 52);
-		datosTrabajadores.textFieldIdentificacion.setLocation(340, 22);
-		datosTrabajadores.setBounds(10, 28, 500, 246);
+		interPreSociales = new InterPreSociales();
+		interPreSociales.setBounds(10, 273, 405, 255);
+		contentPane.add(interPreSociales);
+		
+		tablaEmpleados = new TablaEmpleados();
+		tablaEmpleados.setBounds(520, 28, 448, 500);
+		contentPane.add(tablaEmpleados);
+		
+		datosTrabajadores = new DatosTrabajadores();
+		datosTrabajadores.setBounds(10, 28, 500, 240);
 		contentPane.add(datosTrabajadores);
+	}
+	public TablaEmpleados getTablaEmpleados() {
+		return tablaEmpleados;
+	}
+	public InterPreSociales getInterPreSociales() {
+		return interPreSociales;
+	}
+	public DatosTrabajadores getDatosTrabajadores() {
+		return datosTrabajadores;
 	}
 }

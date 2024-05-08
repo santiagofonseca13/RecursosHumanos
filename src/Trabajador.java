@@ -129,9 +129,4 @@ public class Trabajador extends JPanel {
                 ", Numero=" + Numero +
                 '}';
     }
-
-	public char[] getSalario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
