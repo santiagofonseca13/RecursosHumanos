@@ -5,9 +5,6 @@ public class Cargo extends JPanel {
 	private String nombre;
     private double salario;
 
-	/**
-	 * Create the panel.
-	 */
 	public Cargo() {
 
 	}

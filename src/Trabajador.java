@@ -5,9 +5,6 @@ import javax.swing.border.TitledBorder;
 
 public class Trabajador extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
     private Double Identificacion;
     private int Edad, Numero;

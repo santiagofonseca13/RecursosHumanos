@@ -7,10 +7,7 @@ public class Permiso extends JPanel {
 	private String motivo;
     private Date fechaInicio;
     private Date fechaFin;
-
-	/**
-	 * Create the panel.
-	 */
+    
 	public Permiso() {
 
 	}

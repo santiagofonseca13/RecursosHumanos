@@ -7,9 +7,6 @@ public class login extends JPanel {
 	private JTextField textFieldUsuario;
 	private JTextField textFieldContraseña;
 
-	/**
-	 * Create the panel.
-	 */
 	public login() {
 		setLayout(null);
 		
