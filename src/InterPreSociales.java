@@ -2,6 +2,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class InterPreSociales extends JPanel {
 	private JTextField textFieldPocicionCargo;
@@ -10,7 +11,7 @@ public class InterPreSociales extends JPanel {
 	private JTextField textFieldPensiones;
 	private JTextField textFieldFechaInicio;
 	private JTextField textFieldFechaVacaciones;
-	private JTextField textFieldCensatias;
+	private JTextField textFieldCesantias;
 
 	/**
 	 * Create the panel.
@@ -83,11 +84,14 @@ public class InterPreSociales extends JPanel {
 		textFieldFechaVacaciones.setBounds(137, 167, 86, 20);
 		add(textFieldFechaVacaciones);
 		
-		textFieldCensatias = new JTextField();
-		textFieldCensatias.setColumns(10);
-		textFieldCensatias.setBounds(137, 198, 86, 20);
-		add(textFieldCensatias);
+		textFieldCesantias = new JTextField();
+		textFieldCesantias.setColumns(10);
+		textFieldCesantias.setBounds(137, 198, 86, 20);
+		add(textFieldCesantias);
+		
+		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.setBounds(70, 231, 89, 23);
+		add(btnGuardar);
 
 	}
-
 }
