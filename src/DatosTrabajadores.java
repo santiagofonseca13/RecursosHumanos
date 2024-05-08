@@ -177,8 +177,28 @@ public class DatosTrabajadores extends JPanel {
 	    textFieldEdad.setText(String.valueOf(trabajador.getEdad()));
 	    textFieldCelular.setText(String.valueOf(trabajador.getNumero()));
 	}
-	
+	//Guarda o actualiza datos
 	public void guardarDatos() {
+		for (Trabajador trabajador : listaTrabajadores) {
+	        if (trabajador.getIdentificacion() == cedula) {
+	            // Actualizar los datos del trabajador existente
+	            trabajador.setNombres(textFieldNombre.getText());
+	            trabajador.setApellidos(textFieldApellido.getText());
+	            trabajador.setDireccion(textFieldDireccion.getText());
+	            trabajador.setCorreo(textFieldCorreo.getText());
+	            trabajador.setSeguro(textFieldSeguro.getText());
+	            trabajador.setFondoPensionesCesantias(textFieldCesantias.getText());
+	            trabajador.setRH(textFieldRH.getText());
+	            trabajador.setEdad(Integer.parseInt(textFieldEdad.getText()));
+	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
+
+	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	            for (Trabajador Trabajador :listaTrabajadores) {
+	                System.out.println(Trabajador.toString());
+	            }
+	            return;
+	        }
+	    }
 		Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
             		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
             		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
