@@ -55,35 +55,36 @@ public class InterPreSociales extends JPanel {
 		add(lblCesantias);
 		
 		textFieldPocicionCargo = new JTextField();
-		textFieldPocicionCargo.setBounds(137, 11, 86, 20);
+		textFieldPocicionCargo.setBounds(181, 11, 181, 20);
 		add(textFieldPocicionCargo);
 		textFieldPocicionCargo.setColumns(10);
 		
 		textFieldTipoContrato = new JTextField();
 		textFieldTipoContrato.setColumns(10);
-		textFieldTipoContrato.setBounds(137, 42, 86, 20);
+		textFieldTipoContrato.setBounds(181, 42, 181, 20);
 		add(textFieldTipoContrato);
 		
 		textFieldSalario = new JTextField();
 		textFieldSalario.setColumns(10);
-		textFieldSalario.setBounds(137, 73, 86, 20);
+		textFieldSalario.setBounds(181, 73, 181, 20);
 		add(textFieldSalario);
 		
 		textFieldPensiones = new JTextField();
 		textFieldPensiones.setColumns(10);
-		textFieldPensiones.setBounds(137, 104, 86, 20);
+		textFieldPensiones.setBounds(181, 104, 181, 20);
 		add(textFieldPensiones);
 		
 		textFieldFechaInicio = new JTextField();
 		textFieldFechaInicio.setColumns(10);
-		textFieldFechaInicio.setBounds(137, 136, 86, 20);
+		textFieldFechaInicio.setBounds(181, 136, 181, 20);
 		add(textFieldFechaInicio);
 		
 		textFieldFechaVacaciones = new JTextField();
 		textFieldFechaVacaciones.setColumns(10);
-		textFieldFechaVacaciones.setBounds(137, 167, 86, 20);
+		textFieldFechaVacaciones.setBounds(181, 167, 181, 20);
 		add(textFieldFechaVacaciones);
 		
+
 		textFieldCesantias = new JTextField();
 		textFieldCesantias.setColumns(10);
 		textFieldCesantias.setBounds(137, 198, 86, 20);
@@ -92,6 +93,12 @@ public class InterPreSociales extends JPanel {
 		JButton btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(70, 231, 89, 23);
 		add(btnGuardar);
+
+		textFieldCesantias = new JTextField();
+		textFieldCesantias.setColumns(10);
+		textFieldCesantias.setBounds(181, 198, 181, 20);
+		add(textFieldCesantias);
+
 
 	}
 }

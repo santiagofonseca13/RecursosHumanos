@@ -24,6 +24,7 @@ import java.io.IOException;
 public class DatosTrabajadores extends JPanel {
 	
 	public List<Trabajador> listaTrabajadores = new ArrayList<>();
+	TablaEmpleados tablaEmpleados = new TablaEmpleados();
 	public double cedula;
 	
 	public JTextField textFieldNombre;
@@ -37,33 +38,41 @@ public class DatosTrabajadores extends JPanel {
 	public JTextField textFieldCesantias;
 	public JTextField textFieldEdad;
 	
+	public main principal;
+	
+	public DatosTrabajadores(main principal) {
+		this();
+		this.principal = principal;
+	}
+	
 	public DatosTrabajadores() {
 		setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		setLayout(null);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-        lblNombre.setBounds(10, 25, 60, 14);
+        lblNombre.setBounds(10, 58, 60, 14);
         add(lblNombre);
 
         textFieldNombre = new JTextField();
-        textFieldNombre.setBounds(80, 22, 150, 20);
+        textFieldNombre.setBounds(80, 55, 150, 20);
         add(textFieldNombre);
         textFieldNombre.setColumns(10);
 
         JLabel lblApellido = new JLabel("Apellido:");
-        lblApellido.setBounds(10, 55, 60, 14);
+        lblApellido.setBounds(10, 83, 60, 14);
         add(lblApellido);
 
         textFieldApellido = new JTextField();
-        textFieldApellido.setBounds(80, 52, 150, 20);
+        textFieldApellido.setBounds(80, 80, 150, 20);
         add(textFieldApellido);
         textFieldApellido.setColumns(10);
 
         JLabel lblIdentificacion = new JLabel("Identificación:");
-        lblIdentificacion.setBounds(250, 28, 80, 14);
+        lblIdentificacion.setBounds(131, 27, 80, 14);
         add(lblIdentificacion);
 
         textFieldIdentificacion = new JTextField();
+        textFieldIdentificacion.setBounds(221, 24, 150, 20);
         textFieldIdentificacion.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -71,7 +80,6 @@ public class DatosTrabajadores extends JPanel {
                 cargarDatosPorCedula(cedula);
             }
         });
-        textFieldIdentificacion.setBounds(320, 25, 150, 20);
         add(textFieldIdentificacion);
         textFieldIdentificacion.setColumns(10);
 
@@ -97,45 +105,46 @@ public class DatosTrabajadores extends JPanel {
         btnGuardarDatos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		guardarDatos();
+        		principal.tablaEmpleados.LLenarTabla();
         	}
         });
-        btnGuardarDatos.setBounds(170, 206, 150, 23);
+        btnGuardarDatos.setBounds(170, 203, 150, 23);
         add(btnGuardarDatos);
         
         JLabel lblDireccion = new JLabel("Direccion");
-        lblDireccion.setBounds(10, 83, 60, 14);
+        lblDireccion.setBounds(10, 111, 60, 14);
         add(lblDireccion);
         
         textFieldDireccion = new JTextField();
         textFieldDireccion.setColumns(10);
-        textFieldDireccion.setBounds(80, 80, 150, 20);
+        textFieldDireccion.setBounds(80, 108, 150, 20);
         add(textFieldDireccion);
         
         textFieldCorreo = new JTextField();
         textFieldCorreo.setColumns(10);
-        textFieldCorreo.setBounds(80, 108, 150, 20);
+        textFieldCorreo.setBounds(80, 136, 150, 20);
         add(textFieldCorreo);
         
         JLabel lblCorreo = new JLabel("Correo");
-        lblCorreo.setBounds(10, 111, 60, 14);
+        lblCorreo.setBounds(10, 139, 60, 14);
         add(lblCorreo);
         
         JLabel lblSeguro = new JLabel("Seguro");
-        lblSeguro.setBounds(10, 142, 60, 14);
+        lblSeguro.setBounds(250, 139, 60, 14);
         add(lblSeguro);
         
         textFieldSeguro = new JTextField();
         textFieldSeguro.setColumns(10);
-        textFieldSeguro.setBounds(80, 139, 150, 20);
+        textFieldSeguro.setBounds(320, 136, 150, 20);
         add(textFieldSeguro);
         
         JLabel lblPensionesCesantias = new JLabel("Pensiones y Cesantias");
-        lblPensionesCesantias.setBounds(10, 173, 180, 14);
+        lblPensionesCesantias.setBounds(10, 170, 180, 14);
         add(lblPensionesCesantias);
         
         textFieldCesantias = new JTextField();
         textFieldCesantias.setColumns(10);
-        textFieldCesantias.setBounds(204, 170, 266, 20);
+        textFieldCesantias.setBounds(204, 167, 266, 20);
         add(textFieldCesantias);
         
         JLabel lblEdad = new JLabel("Edad");
@@ -147,41 +156,42 @@ public class DatosTrabajadores extends JPanel {
         textFieldEdad.setBounds(320, 80, 150, 20);
         add(textFieldEdad);
     }
-	
-    // Método para actualizar los campos de texto con los datos de un objeto Trabajador
-	public void mostrarDatosTrabajador(Trabajador trabajador) {
-	    textFieldNombre.setText(trabajador.getNombres());
-	    textFieldApellido.setText(trabajador.getApellidos());
-	    textFieldIdentificacion.setText(String.valueOf(trabajador.getIdentificacion()));
-	    textFieldDireccion.setText(trabajador.getDireccion());
-	    textFieldCorreo.setText(trabajador.getCorreo());
-	    textFieldSeguro.setText(trabajador.getSeguro());
-	    textFieldCesantias.setText(trabajador.getFondoPensionesCesantias());
-	    textFieldRH.setText(trabajador.getRH());
-	    textFieldEdad.setText(String.valueOf(trabajador.getEdad()));
-	    textFieldCelular.setText(String.valueOf(trabajador.getNumero()));
-	}
-	private void guardarDatos() {
+	//Guarda o actualiza datos
+	public void guardarDatos() {
 		for (Trabajador trabajador : listaTrabajadores) {
-            if (trabajador.getIdentificacion().equals(cedula)) {
-            	//Cedula existente
-            	Trabajador P1 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
-            			textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
-            			Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
-            	listaTrabajadores.add(P1);
-            	
-            	
-                return;
-            }
-		}
-		// Guardar la lista en un archivo de texto
-		guardarEnArchivo(listaTrabajadores);
-		// Mostrar mensaje de éxito
-		JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
+	        if (trabajador.getIdentificacion() == cedula) {
+	            // Actualizar los datos del trabajador existente
+	            trabajador.setNombres(textFieldNombre.getText());
+	            trabajador.setApellidos(textFieldApellido.getText());
+	            trabajador.setDireccion(textFieldDireccion.getText());
+	            trabajador.setCorreo(textFieldCorreo.getText());
+	            trabajador.setSeguro(textFieldSeguro.getText());
+	            trabajador.setFondoPensionesCesantias(textFieldCesantias.getText());
+	            trabajador.setRH(textFieldRH.getText());
+	            trabajador.setEdad(Integer.parseInt(textFieldEdad.getText()));
+	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
+
+	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	            for (Trabajador Trabajador :listaTrabajadores) {
+	                System.out.println(Trabajador.toString());
+	            }
+	            return;
+	        }
+	    }
+		Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
+            		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
+            		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
+        listaTrabajadores.add(P5);
+        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
+        for (Trabajador Trabajador :listaTrabajadores) {
+            System.out.println(Trabajador.toString());
+        }
+        guardarEnArchivo(listaTrabajadores);
+        return;
 	}
 
     
-    private void guardarEnArchivo(List<Trabajador> lista) {
+	public void guardarEnArchivo(List<Trabajador> lista) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("datos_trabajadores.txt"))) {
             for (Trabajador trabajador : lista) {
                 // Escribir los datos del trabajador en el archivo
@@ -195,7 +205,6 @@ public class DatosTrabajadores extends JPanel {
         }
     }
     
-    //Trae la informacion de una persona o¿por su cedula
     public void cargarDatosPorCedula(double cedula) {
         for (Trabajador trabajador : listaTrabajadores) {
             if (trabajador.getIdentificacion().equals(cedula)) {
@@ -211,6 +220,9 @@ public class DatosTrabajadores extends JPanel {
                 return;
             }
         }
+    }
+    public List<Trabajador> getLista(){
+    	return listaTrabajadores;
     }
 
 }

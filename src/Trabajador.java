@@ -5,9 +5,6 @@ import javax.swing.border.TitledBorder;
 
 public class Trabajador extends JPanel {
 
-	/**
-	 * Create the panel.
-	 */
 	private String Nombres, Apellidos, Direccion, Correo, Seguro, FondoPensionesCesantias, RH;
     private Double Identificacion;
     private int Edad, Numero;
@@ -132,9 +129,4 @@ public class Trabajador extends JPanel {
                 ", Numero=" + Numero +
                 '}';
     }
-
-	public char[] getSalario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
