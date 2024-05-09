@@ -1,0 +1,5 @@
+Trabajador{Nombres='ssss', Apellidos='ssss', Direccion='ssss', Correo='ssss', Seguro='ssss', FondoPensionesCesantias='ssss', RH='ssss', Identificacion=0.0, Edad=0, Numero=0}
+Trabajador{Nombres='xxx', Apellidos='ssss', Direccion='ssss', Correo='ssss', Seguro='ssss', FondoPensionesCesantias='ssss', RH='ssss', Identificacion=0.0, Edad=0, Numero=0}
+Trabajador{Nombres='yyyy', Apellidos='ssss', Direccion='ssss', Correo='ssss', Seguro='ssss', FondoPensionesCesantias='ssss', RH='ssss', Identificacion=0.0, Edad=0, Numero=0}
+Trabajador{Nombres='zzzz', Apellidos='ssss', Direccion='ssss', Correo='ssss', Seguro='ssss', FondoPensionesCesantias='ssss', RH='ssss', Identificacion=0.0, Edad=0, Numero=0}
+Trabajador{Nombres='456', Apellidos='456', Direccion='436', Correo='356', Seguro='345', FondoPensionesCesantias='36', RH='34645', Identificacion=10913.0, Edad=46, Numero=56}

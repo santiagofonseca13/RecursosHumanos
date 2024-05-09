@@ -47,6 +47,7 @@ public class TablaEmpleados extends JPanel{
 	public void setTrabajadores(DatosTrabajadores DatosTrabajadores) {
 		this.principal.datosTrabajadores=DatosTrabajadores;
 	}
+	
 	public void LLenarTabla() {
 		List<Trabajador>listaTrabajadores = principal.datosTrabajadores.getLista();
 		for (Trabajador Trabajador: listaTrabajadores) {
@@ -60,4 +61,5 @@ public class TablaEmpleados extends JPanel{
 			model.addRow(fila);
 		}
 	}
+	
 }

@@ -18,7 +18,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 import java.io.FileWriter;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class DatosTrabajadores extends JPanel {
@@ -37,6 +39,8 @@ public class DatosTrabajadores extends JPanel {
 	public JTextField textFieldSeguro;
 	public JTextField textFieldCesantias;
 	public JTextField textFieldEdad;
+	
+	String nombreArchivo = "datos_trabajadores.txt";
 	
 	public main principal;
 	
@@ -87,6 +91,7 @@ public class DatosTrabajadores extends JPanel {
             public void focusLost(FocusEvent e) {
                 cedula = Double.parseDouble(textFieldIdentificacion.getText());
                 cargarDatosPorCedula(cedula);
+                principal.tablaEmpleados.LLenarTabla();
             }
         });
         add(textFieldIdentificacion);
@@ -164,6 +169,8 @@ public class DatosTrabajadores extends JPanel {
         textFieldEdad.setColumns(10);
         textFieldEdad.setBounds(320, 80, 150, 20);
         add(textFieldEdad);
+        
+        //cargarDesdeArchivo(listaTrabajadores);
     }
 	//Guarda o actualiza datos
 	public void guardarDatos() {
@@ -230,8 +237,39 @@ public class DatosTrabajadores extends JPanel {
             }
         }
     }
+    
+    public void cargarDesdeArchivo(List<Trabajador> lista) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("datos_trabajadores.txt"))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] datos = linea.split(",");
+                if (datos.length == 10) {
+                    String nombre = datos[0];
+                    String apellido = datos[1];
+                    String direccion = datos[2];
+                    String correo = datos[3];
+                    String seguro = datos[4];
+                    String fondoPensionesCesantias = datos[5];
+                    String RH = datos[7];
+                    double identificacion = Double.parseDouble(datos[6]);
+                    int edad = Integer.parseInt(datos[8]);
+                    int numero = Integer.parseInt(datos[9]);
+
+                    Trabajador trabajador = new Trabajador(nombre, apellido, direccion, correo, seguro, fondoPensionesCesantias, 
+                    		RH, identificacion,edad, numero);
+                    listaTrabajadores.add(trabajador);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejo de errores de lectura del archivo
+            System.err.println("Error al leer el archivo: " + nombreArchivo);
+        }
+        //return listaTrabajadores;
+    }
+    
     public List<Trabajador> getLista(){
     	return listaTrabajadores;
-    }
+    }	
 
 }
