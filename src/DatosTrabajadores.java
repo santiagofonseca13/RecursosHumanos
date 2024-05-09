@@ -49,6 +49,15 @@ public class DatosTrabajadores extends JPanel {
 		setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		setLayout(null);
 		
+		Trabajador P1 = new Trabajador("ssss","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
+		Trabajador P2 = new Trabajador("xxx","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
+		Trabajador P3 = new Trabajador("yyyy","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
+		Trabajador P4 = new Trabajador("zzzz","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
+		listaTrabajadores.add(P1);
+		listaTrabajadores.add(P2);
+		listaTrabajadores.add(P3);
+		listaTrabajadores.add(P4);
+		
 		JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(10, 58, 60, 14);
         add(lblNombre);
