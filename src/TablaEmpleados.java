@@ -47,7 +47,8 @@ public class TablaEmpleados extends JPanel{
 	public void setTrabajadores(DatosTrabajadores DatosTrabajadores) {
 		this.principal.datosTrabajadores=DatosTrabajadores;
 	}
-	public void LLenarTabla(List<Trabajador>listaTrabajadores) {
+	public void LLenarTabla() {
+		List<Trabajador>listaTrabajadores = principal.datosTrabajadores.getLista();
 		for (Trabajador Trabajador: listaTrabajadores) {
 			Object[] fila = new Object [5];
 			fila[0]=Trabajador.getIdentificacion();

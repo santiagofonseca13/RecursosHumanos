@@ -49,15 +49,6 @@ public class DatosTrabajadores extends JPanel {
 		setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		setLayout(null);
 		
-		Trabajador P1 = new Trabajador("ssss","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P2 = new Trabajador("xxx","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P3 = new Trabajador("yyyy","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P4 = new Trabajador("zzzz","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		listaTrabajadores.add(P1);
-		listaTrabajadores.add(P2);
-		listaTrabajadores.add(P3);
-		listaTrabajadores.add(P4);
-		
 		JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(10, 58, 60, 14);
         add(lblNombre);
@@ -114,6 +105,7 @@ public class DatosTrabajadores extends JPanel {
         btnGuardarDatos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		guardarDatos();
+        		principal.tablaEmpleados.LLenarTabla();
         	}
         });
         btnGuardarDatos.setBounds(170, 203, 150, 23);
@@ -164,19 +156,6 @@ public class DatosTrabajadores extends JPanel {
         textFieldEdad.setBounds(320, 80, 150, 20);
         add(textFieldEdad);
     }
-	
-	public void mostrarDatosTrabajador(Trabajador trabajador) {
-	    textFieldNombre.setText(trabajador.getNombres());
-	    textFieldApellido.setText(trabajador.getApellidos());
-	    textFieldIdentificacion.setText(String.valueOf(trabajador.getIdentificacion()));
-	    textFieldDireccion.setText(trabajador.getDireccion());
-	    textFieldCorreo.setText(trabajador.getCorreo());
-	    textFieldSeguro.setText(trabajador.getSeguro());
-	    textFieldCesantias.setText(trabajador.getFondoPensionesCesantias());
-	    textFieldRH.setText(trabajador.getRH());
-	    textFieldEdad.setText(String.valueOf(trabajador.getEdad()));
-	    textFieldCelular.setText(String.valueOf(trabajador.getNumero()));
-	}
 	//Guarda o actualiza datos
 	public void guardarDatos() {
 		for (Trabajador trabajador : listaTrabajadores) {
@@ -226,7 +205,6 @@ public class DatosTrabajadores extends JPanel {
         }
     }
     
-    //Trae la informacion de una persona o¿por su cedula
     public void cargarDatosPorCedula(double cedula) {
         for (Trabajador trabajador : listaTrabajadores) {
             if (trabajador.getIdentificacion().equals(cedula)) {

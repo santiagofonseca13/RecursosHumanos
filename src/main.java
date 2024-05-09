@@ -48,13 +48,15 @@ public class main extends JFrame {
 		interPreSociales.setBounds(10, 273, 405, 255);
 		contentPane.add(interPreSociales);
 		
-		tablaEmpleados = new TablaEmpleados();
+		tablaEmpleados = new TablaEmpleados(this);
 		tablaEmpleados.setBounds(520, 28, 448, 500);
 		contentPane.add(tablaEmpleados);
 		
-		datosTrabajadores = new DatosTrabajadores();
+		datosTrabajadores = new DatosTrabajadores(this);
 		datosTrabajadores.setBounds(10, 28, 500, 240);
 		contentPane.add(datosTrabajadores);
+		
+		
 	}
 	public TablaEmpleados getTablaEmpleados() {
 		return tablaEmpleados;
