@@ -36,7 +36,6 @@ public class TablaEmpleados extends JPanel{
 		table = new JTable();
 		model=new DefaultTableModel();
 		table.setModel(model);
-		
 		model.addColumn("Identificacion");
 		model.addColumn("Nombres");
 		model.addColumn("Apellidos");

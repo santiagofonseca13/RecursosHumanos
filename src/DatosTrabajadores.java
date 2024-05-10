@@ -26,7 +26,6 @@ import java.io.IOException;
 public class DatosTrabajadores extends JPanel {
 	
 	public List<Trabajador> listaTrabajadores = new ArrayList<>();
-	TablaEmpleados tablaEmpleados = new TablaEmpleados();
 	public double cedula;
 	
 	public JTextField textFieldNombre;
@@ -40,8 +39,6 @@ public class DatosTrabajadores extends JPanel {
 	public JTextField textFieldCesantias;
 	public JTextField textFieldEdad;
 	
-	String nombreArchivo = "datos_trabajadores.txt";
-	
 	public main principal;
 	
 	public DatosTrabajadores(main principal) {
@@ -53,14 +50,7 @@ public class DatosTrabajadores extends JPanel {
 		setBorder(new TitledBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)), "Datos Personales", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		setLayout(null);
 		
-		Trabajador P1 = new Trabajador("ssss","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P2 = new Trabajador("xxx","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P3 = new Trabajador("yyyy","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		Trabajador P4 = new Trabajador("zzzz","ssss","ssss","ssss","ssss","ssss","ssss",0.00 ,0,0);
-		listaTrabajadores.add(P1);
-		listaTrabajadores.add(P2);
-		listaTrabajadores.add(P3);
-		listaTrabajadores.add(P4);
+        cargarDesdeArchivo();
 		
 		JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(10, 58, 60, 14);
@@ -89,9 +79,13 @@ public class DatosTrabajadores extends JPanel {
         textFieldIdentificacion.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
-                cedula = Double.parseDouble(textFieldIdentificacion.getText());
-                cargarDatosPorCedula(cedula);
-                principal.tablaEmpleados.LLenarTabla();
+        	    principal.tablaEmpleados.LLenarTabla();
+            	String textoIdentificacion = textFieldIdentificacion.getText();
+            	if (!textoIdentificacion.isEmpty()) {
+            	    cedula = Double.parseDouble(textFieldIdentificacion.getText());
+            	    cargarDatosPorCedula(cedula);
+            	} else {
+            	}
             }
         });
         add(textFieldIdentificacion);
@@ -169,14 +163,11 @@ public class DatosTrabajadores extends JPanel {
         textFieldEdad.setColumns(10);
         textFieldEdad.setBounds(320, 80, 150, 20);
         add(textFieldEdad);
-        
-        //cargarDesdeArchivo(listaTrabajadores);
     }
-	//Guarda o actualiza datos
+	
 	public void guardarDatos() {
 		for (Trabajador trabajador : listaTrabajadores) {
 	        if (trabajador.getIdentificacion() == cedula) {
-	            // Actualizar los datos del trabajador existente
 	            trabajador.setNombres(textFieldNombre.getText());
 	            trabajador.setApellidos(textFieldApellido.getText());
 	            trabajador.setDireccion(textFieldDireccion.getText());
@@ -188,38 +179,71 @@ public class DatosTrabajadores extends JPanel {
 	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
 
 	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
-	            for (Trabajador Trabajador :listaTrabajadores) {
-	                System.out.println(Trabajador.toString());
-	            }
 	            return;
-	        }
-	    }
-		Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
-            		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
-            		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
-        listaTrabajadores.add(P5);
-        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
-        for (Trabajador Trabajador :listaTrabajadores) {
-            System.out.println(Trabajador.toString());
-        }
-        guardarEnArchivo(listaTrabajadores);
+	        }else{
+	        	Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
+	            		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
+	            		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
+	        listaTrabajadores.add(P5);
+	        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
+            
+	    }}
+		guardarEnArchivo();
         return;
 	}
-
-    
-	public void guardarEnArchivo(List<Trabajador> lista) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("datos_trabajadores.txt"))) {
-            for (Trabajador trabajador : lista) {
-                // Escribir los datos del trabajador en el archivo
-                writer.write(trabajador.toString());
-                writer.newLine();
+	
+	public Trabajador buscarTrabajadorPorCedula() {
+        for (Trabajador trabajador : listaTrabajadores) {
+            if (trabajador.getIdentificacion() == cedula) {
+                return trabajador;
             }
+        }
+        return null;
+    }
+
+	public void guardarEnArchivo() {
+        try (BufferedWriter escribir = new BufferedWriter(new FileWriter("datos_trabajadores.txt",true))) {
+            for (Trabajador trabajador : listaTrabajadores) {
+            	escribir.write(trabajador.getNombres()+"\t"+trabajador.getApellidos()+"\t"+trabajador.getDireccion()+"\t"+trabajador.getCorreo()+"\t"+
+            			trabajador.getSeguro()+"\t"+trabajador.getFondoPensionesCesantias()+"\t"+trabajador.getRH()+"\t"+trabajador.getIdentificacion()+"\t"+
+            			trabajador.getEdad()+"\t"+trabajador.getNumero());
+            	escribir.newLine();
+            }
+            escribir.close();
         } catch (IOException e) {
-            // Manejo de errores de escritura en el archivo
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al guardar los datos.");
         }
     }
+    
+    public void cargarDesdeArchivo() {
+        try (BufferedReader leer = new BufferedReader(new FileReader("datos_trabajadores.txt"))) {
+            String linea;
+            while ((linea = leer.readLine()) != null) {
+                String[] datos = linea.split("\t");
+                if (datos.length == 10) {
+                    String nombre = datos[0];
+                    String apellido = datos[1];
+                    String direccion = datos[2];
+                    String correo = datos[3];
+                    String seguro = datos[4];
+                    String fondoPensionesCesantias = datos[5];
+                    String RH = datos[6];
+                    double identificacion = Double.parseDouble(datos[7]);
+                    int edad = Integer.parseInt(datos[8]);
+                    int numero = Integer.parseInt(datos[9]);
+
+                    Trabajador trabajador = new Trabajador(nombre, apellido, direccion, correo, seguro, fondoPensionesCesantias, 
+                    		RH, identificacion,edad, numero);
+                    listaTrabajadores.add(trabajador);
+                }
+            }
+            leer.close();
+        } catch (IOException e) {
+           System.out.println("Error al leer el archivo");
+        }
+    }
+    
     
     public void cargarDatosPorCedula(double cedula) {
         for (Trabajador trabajador : listaTrabajadores) {
@@ -236,36 +260,6 @@ public class DatosTrabajadores extends JPanel {
                 return;
             }
         }
-    }
-    
-    public void cargarDesdeArchivo(List<Trabajador> lista) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("datos_trabajadores.txt"))) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                String[] datos = linea.split(",");
-                if (datos.length == 10) {
-                    String nombre = datos[0];
-                    String apellido = datos[1];
-                    String direccion = datos[2];
-                    String correo = datos[3];
-                    String seguro = datos[4];
-                    String fondoPensionesCesantias = datos[5];
-                    String RH = datos[7];
-                    double identificacion = Double.parseDouble(datos[6]);
-                    int edad = Integer.parseInt(datos[8]);
-                    int numero = Integer.parseInt(datos[9]);
-
-                    Trabajador trabajador = new Trabajador(nombre, apellido, direccion, correo, seguro, fondoPensionesCesantias, 
-                    		RH, identificacion,edad, numero);
-                    listaTrabajadores.add(trabajador);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            // Manejo de errores de lectura del archivo
-            System.err.println("Error al leer el archivo: " + nombreArchivo);
-        }
-        //return listaTrabajadores;
     }
     
     public List<Trabajador> getLista(){
