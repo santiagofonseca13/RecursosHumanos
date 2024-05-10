@@ -13,7 +13,6 @@ public class TablaEmpleados extends JPanel{
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private DefaultTableModel model;
-	List<Trabajador>listaTrabajadores;
 	
 	public main principal;
 	
@@ -48,6 +47,8 @@ public class TablaEmpleados extends JPanel{
 	}
 	
 	public void LLenarTabla() {
+		model.setRowCount(0);
+		
 		List<Trabajador>listaTrabajadores = principal.datosTrabajadores.getLista();
 		for (Trabajador Trabajador: listaTrabajadores) {
 			Object[] fila = new Object [5];

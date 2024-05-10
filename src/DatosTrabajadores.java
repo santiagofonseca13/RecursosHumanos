@@ -179,16 +179,19 @@ public class DatosTrabajadores extends JPanel {
 	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
 
 	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	    		guardarEnArchivo();
 	            return;
+	            
 	        }else{
 	        	Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
 	            		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
 	            		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
-	        listaTrabajadores.add(P5);
-	        JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
-            
-	    }}
-		guardarEnArchivo();
+	        	listaTrabajadores.add(P5);
+	        	JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
+	    		guardarEnArchivo();
+	        	return;
+	        	}
+	        } 
         return;
 	}
 	
@@ -218,7 +221,7 @@ public class DatosTrabajadores extends JPanel {
     
     public void cargarDesdeArchivo() {
         try (BufferedReader leer = new BufferedReader(new FileReader("datos_trabajadores.txt"))) {
-            String linea;
+            String linea="";
             while ((linea = leer.readLine()) != null) {
                 String[] datos = linea.split("\t");
                 if (datos.length == 10) {
@@ -238,7 +241,6 @@ public class DatosTrabajadores extends JPanel {
                     listaTrabajadores.add(trabajador);
                 }
             }
-            leer.close();
         } catch (IOException e) {
            System.out.println("Error al leer el archivo");
         }
