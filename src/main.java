@@ -67,4 +67,6 @@ public class main extends JFrame {
 	public DatosTrabajadores getDatosTrabajadores() {
 		return datosTrabajadores;
 	}
+	public void dispose() {	
+	}
 }
