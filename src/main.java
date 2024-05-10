@@ -72,7 +72,7 @@ public class main extends JFrame {
 		login.setVisible(false);
 		
 		interPreSociales = new InterPreSociales();
-		interPreSociales.setBounds(10, 273, 405, 255);
+		interPreSociales.setBounds(10, 273, 500, 255);
 		contentPane.add(interPreSociales);
 		interPreSociales.setVisible(true);
 		
