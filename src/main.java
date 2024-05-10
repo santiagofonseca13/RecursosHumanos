@@ -45,7 +45,7 @@ public class main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		login = new login(this);
+		/*login = new login(this);
 		login.setBounds(348, 115, 331, 284);
 		contentPane.add(login);
 		login.setVisible(true);
@@ -63,7 +63,28 @@ public class main extends JFrame {
 		datosTrabajadores = new DatosTrabajadores(this);
 		datosTrabajadores.setBounds(10, 28, 500, 240);
 		contentPane.add(datosTrabajadores);
-		datosTrabajadores.setVisible(false);
+		datosTrabajadores.setVisible(false);*/
+		
+		
+		login = new login(this);
+		login.setBounds(348, 115, 331, 284);
+		contentPane.add(login);
+		login.setVisible(false);
+		
+		interPreSociales = new InterPreSociales();
+		interPreSociales.setBounds(10, 273, 405, 255);
+		contentPane.add(interPreSociales);
+		interPreSociales.setVisible(true);
+		
+		tablaEmpleados = new TablaEmpleados(this);
+		tablaEmpleados.setBounds(520, 28, 448, 500);
+		contentPane.add(tablaEmpleados);
+		tablaEmpleados.setVisible(true);
+		
+		datosTrabajadores = new DatosTrabajadores(this);
+		datosTrabajadores.setBounds(10, 28, 500, 240);
+		contentPane.add(datosTrabajadores);
+		datosTrabajadores.setVisible(true);
 		
 	}
 	public void mostrarPanelPrincipal() {
