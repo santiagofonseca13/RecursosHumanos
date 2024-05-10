@@ -15,6 +15,7 @@ public class main extends JFrame {
 	public TablaEmpleados tablaEmpleados;
 	public InterPreSociales interPreSociales;
 	public DatosTrabajadores datosTrabajadores;
+	public login login;
 
 	/**
 	 * Launch the application.
@@ -44,20 +45,33 @@ public class main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		login = new login(this);
+		login.setBounds(348, 115, 331, 284);
+		contentPane.add(login);
+		login.setVisible(true);
+		
 		interPreSociales = new InterPreSociales();
 		interPreSociales.setBounds(10, 273, 405, 255);
 		contentPane.add(interPreSociales);
+		interPreSociales.setVisible(false);
 		
 		tablaEmpleados = new TablaEmpleados(this);
 		tablaEmpleados.setBounds(520, 28, 448, 500);
 		contentPane.add(tablaEmpleados);
+		tablaEmpleados.setVisible(false);
 		
 		datosTrabajadores = new DatosTrabajadores(this);
 		datosTrabajadores.setBounds(10, 28, 500, 240);
 		contentPane.add(datosTrabajadores);
-		
+		datosTrabajadores.setVisible(false);
 		
 	}
+	public void mostrarPanelPrincipal() {
+        login.setVisible(false);
+        interPreSociales.setVisible(true);
+        tablaEmpleados.setVisible(true);
+        datosTrabajadores.setVisible(true);
+    }
 	public TablaEmpleados getTablaEmpleados() {
 		return tablaEmpleados;
 	}
@@ -68,5 +82,8 @@ public class main extends JFrame {
 		return datosTrabajadores;
 	}
 	public void dispose() {	
+	}
+	public login getLogin() {
+		return login;
 	}
 }

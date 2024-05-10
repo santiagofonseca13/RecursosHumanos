@@ -13,6 +13,13 @@ public class login extends JPanel {
 	private JTextField txtUsuario;
 	private JPasswordField jpassContraseña;
 	private JButton btnIngresar;
+	
+public main principal;
+	
+	public login(main principal) {
+		this();
+		this.principal = principal;
+	}
 
 	public login() {
 		setLayout(null);
@@ -41,8 +48,7 @@ public class login extends JPanel {
 					dispose ();
 					JOptionPane.showMessageDialog(null, "Bienvenido al sistema!!", "INGRESASTE",
 							JOptionPane.INFORMATION_MESSAGE);
-					main principal = new main ();
-					principal.setVisible(true);
+					principal.mostrarPanelPrincipal();
 				}else {
 					JOptionPane.showMessageDialog(null,"Usuario o contraseña están incorrectos","Error al ingresar",
 							JOptionPane.ERROR_MESSAGE);
