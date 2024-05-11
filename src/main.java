@@ -38,7 +38,7 @@ public class main extends JFrame {
 	 */
 	public main() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 994, 598);
+		setBounds(100, 100, 994, 663);
 		contentPane = new JPanel();
 		contentPane.setBorder(new TitledBorder(null, "Gestor de Recursos Humanos", TitledBorder.CENTER, TitledBorder.ABOVE_TOP, null, Color.BLUE));
 
@@ -72,12 +72,12 @@ public class main extends JFrame {
 		login.setVisible(false);
 		
 		interPreSociales = new InterPreSociales();
-		interPreSociales.setBounds(10, 273, 405, 255);
+		interPreSociales.setBounds(10, 279, 500, 334);
 		contentPane.add(interPreSociales);
 		interPreSociales.setVisible(true);
 		
 		tablaEmpleados = new TablaEmpleados(this);
-		tablaEmpleados.setBounds(520, 28, 448, 500);
+		tablaEmpleados.setBounds(520, 28, 448, 585);
 		contentPane.add(tablaEmpleados);
 		tablaEmpleados.setVisible(true);
 		
