@@ -1,5 +1,22 @@
-Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	102323.0	20	2424124Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	102323.0	20	2424124
-Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	1023546.0	20	2424124
-Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	102323.0	20	2424124
-Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	1023546.0	20	2424124
-Santiago	Fonseca	Tocancipa	sasas@gmail	Salud	Porvenir	A+	1023546.0	20	2424124
+Camila	Rodriguez	Av. 1 #23-45	camila@email.com	Salud	Protección	B-	56789.0	22	6655443
+Daniel	Lopez	Calle 78 #90-12	daniel.lopez@email.com	SaludTotal	Colfondos	O+	901234.0	25	8787878
+Laura	Hernandez	Carrera 56 #78-90	laura.h@email.com	Salud	Porvenir	B+	112233.0	24	9876543
+Andres	Martinez	Av. 12 #34-56	andres.martinez@email.com	SaludTotal	Colpensiones	A-	345678.0	21	2345678
+Valentina	Garcia	Calle 34 #56-78	valentina.garcia@email.com	Salud	Protección	A+	789012.0	23	3456789
+Carlos	Rojas	Carrera 90 #12-34	carlos.rojas@email.com	SaludTotal	Colfondos	O-	543210.0	26	4567890
+Maria	Perez	Av. 56 #78-90	maria.perez@email.com	Salud	Porvenir	AB+	654321.0	27	5678901
+Juan	Castro	Calle 23 #45-67	juan.castro@email.com	SaludTotal	Colpensiones	B+	789456.0	28	6789012
+Diana	Molina	Carrera 78 #90-12	diana.molina@email.com	Salud	Protección	B-	345678.0	29	7890123
+Felipe	Gutierrez	Av. 34 #56-78	felipe.gutierrez@email.com	SaludTotal	Colfondos	O+	234567.0	30	8901234
+Alejandra	Sanchez	Calle 12 #34-56	alejandra.sanchez@email.com	Salud	Protección	A-	456789.0	31	9012345
+Jorge	Vargas	Carrera 45 #67-89	jorge.vargas@email.com	SaludTotal	Colpensiones	AB+	567890.0	32	1234567
+Paola	Chavez	Av. 1 #23-45	paola.chavez@email.com	Salud	Protección	B+	678901.0	33	2345678
+Roberto	Mendez	Calle 78 #90-12	roberto.mendez@email.com	SaludTotal	Colfondos	AB-	789012.0	34	3456789
+Luisa	Ortega	Carrera 56 #78-90	luisa.ortega@email.com	Salud	Porvenir	O+	890123.0	35	4567890
+Oscar	Gomez	Av. 12 #34-56	oscar.gomez@email.com	SaludTotal	Colpensiones	A+	901234.0	36	5678901
+Valeria	Ramirez	Calle 34 #56-78	valeria.ramirez@email.com	Salud	Protección	B-	123456.0	37	6789012
+Diego	Torres	Carrera 90 #12-34	diego.torres@email.com	SaludTotal	Colfondos	AB+	234567.0	38	7890123
+Marcela	Rivera	Carrera 12 #34-56	marcela.rivera@email.com	Salud	Protección	A+	345678.0	21	2424124
+Andrea	Gutierrez	Calle 45 #67-89	andrea.gutierrez@email.com	SaludTotal	Colpensiones	B+	56789.0	22	4545254
+Pedro	Molina	Av. 1 #23-45	pedro.molina@email.com	Salud	Protección	B-	789012.0	23	6655443
+Juliana	Perez	Calle 78 #90-12	juliana.perez@email.com	SaludTotal	Colfondos	O+	901234.0	24	8787878

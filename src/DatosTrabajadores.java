@@ -22,6 +22,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class DatosTrabajadores extends JPanel {
 	
@@ -166,6 +168,7 @@ public class DatosTrabajadores extends JPanel {
     }
 	
 	public void guardarDatos() {
+		boolean encontrado = false;
 		for (Trabajador trabajador : listaTrabajadores) {
 	        if (trabajador.getIdentificacion() == cedula) {
 	            trabajador.setNombres(textFieldNombre.getText());
@@ -177,23 +180,22 @@ public class DatosTrabajadores extends JPanel {
 	            trabajador.setRH(textFieldRH.getText());
 	            trabajador.setEdad(Integer.parseInt(textFieldEdad.getText()));
 	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
-
-	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
-	    		guardarEnArchivo();
-	            return;
 	            
-	        }else{
+	            encontrado = true;
+	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	            break;
+	        }
+		}
+		if (!encontrado) {
 	        	Trabajador P5 = new Trabajador(textFieldNombre.getText(), textFieldApellido.getText(), 
 	            		textFieldDireccion.getText(), textFieldCorreo.getText(),textFieldSeguro.getText(), textFieldCesantias.getText(), textFieldRH.getText(),
 	            		Double.parseDouble(textFieldIdentificacion.getText()),Integer.parseInt(textFieldEdad.getText()),Integer.parseInt(textFieldCelular.getText()));
 	        	listaTrabajadores.add(P5);
 	        	JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
-	    		guardarEnArchivo();
-	        	return;
 	        	}
-	        } 
-        return;
+		guardarEnArchivo();
 	}
+
 	
 	public Trabajador buscarTrabajadorPorCedula() {
         for (Trabajador trabajador : listaTrabajadores) {
@@ -205,11 +207,19 @@ public class DatosTrabajadores extends JPanel {
     }
 
 	public void guardarEnArchivo() {
-        try (BufferedWriter escribir = new BufferedWriter(new FileWriter("datos_trabajadores.txt",true))) {
+        try (BufferedWriter escribir = new BufferedWriter(new FileWriter("datos_trabajadores.txt"))) {
+        	escribir.write("");
             for (Trabajador trabajador : listaTrabajadores) {
-            	escribir.write(trabajador.getNombres()+"\t"+trabajador.getApellidos()+"\t"+trabajador.getDireccion()+"\t"+trabajador.getCorreo()+"\t"+
-            			trabajador.getSeguro()+"\t"+trabajador.getFondoPensionesCesantias()+"\t"+trabajador.getRH()+"\t"+trabajador.getIdentificacion()+"\t"+
-            			trabajador.getEdad()+"\t"+trabajador.getNumero());
+            	escribir.write(trabajador.getNombres()+"\t"+
+            			trabajador.getApellidos()+"\t"+
+            			trabajador.getDireccion()+"\t"+
+            			trabajador.getCorreo()+"\t"+
+            			trabajador.getSeguro()+"\t"+
+            			trabajador.getFondoPensionesCesantias()+"\t"+
+            			trabajador.getRH()+"\t"+
+            			trabajador.getIdentificacion()+"\t"+
+            			trabajador.getEdad()+"\t"+
+            			trabajador.getNumero());
             	escribir.newLine();
             }
             escribir.close();
