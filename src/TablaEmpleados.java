@@ -10,7 +10,6 @@ import javax.swing.JScrollPane;
 
 public class TablaEmpleados extends JPanel{
 	
-	private DefaultTableModel tableModel;
 	private JTable table;
 	private DefaultTableModel model;
 	

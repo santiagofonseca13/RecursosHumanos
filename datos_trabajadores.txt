@@ -20,3 +20,4 @@ Marcela	Rivera	Carrera 12 #34-56	marcela.rivera@email.com	Salud	Protección	A+	3
 Andrea	Gutierrez	Calle 45 #67-89	andrea.gutierrez@email.com	SaludTotal	Colpensiones	B+	56789.0	22	4545254
 Pedro	Molina	Av. 1 #23-45	pedro.molina@email.com	Salud	Protección	B-	789012.0	23	6655443
 Juliana	Perez	Calle 78 #90-12	juliana.perez@email.com	SaludTotal	Colfondos	O+	901234.0	24	8787878
+Camila	Rodriguez	Av. 1 #23-45	camila@email.com	Salud	Protección	B-	343452.0	22	6655443

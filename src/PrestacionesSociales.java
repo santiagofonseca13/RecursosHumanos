@@ -1,24 +1,33 @@
 import javax.swing.JPanel;
 
 public class PrestacionesSociales extends JPanel {
-	private double cesantias, interesesCesantias, primaVacacional, primaServicios, pension, salario, fechaInicio, fechaVacaciones;
-	private String contrato;
+	private double identificacion, cesantias, Vacacional, prima, pension, salario;
+	private String contrato, fechaInicio, fechaVacaciones;
 	/**
 	 * Create the panel.
 	 */
 	public PrestacionesSociales() {
 
 	}
-	public PrestacionesSociales(double cesantias, double interesesCesantias, double primaVacacional, double primaServicios, double pension, double salario, double fechaInicio, double fechaVacaciones, String contrato) {
+
+    public PrestacionesSociales(double identificacion, double cesantias, double Vacacional, double prima, double pension, double salario, String contrato, String fechaInicio, String fechaVacaciones) {
+        this.identificacion = identificacion;
         this.cesantias = cesantias;
-        this.interesesCesantias = interesesCesantias;
-        this.primaVacacional = primaVacacional;
-        this.primaServicios = primaServicios;
+        this.Vacacional = Vacacional;
+        this.prima = prima;
         this.pension = pension;
         this.salario = salario;
+        this.contrato = contrato;
         this.fechaInicio = fechaInicio;
         this.fechaVacaciones = fechaVacaciones;
-        this.contrato = contrato;
+    }
+
+    public double getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(double identificacion) {
+        this.identificacion = identificacion;
     }
 
     public double getCesantias() {
@@ -29,28 +38,20 @@ public class PrestacionesSociales extends JPanel {
         this.cesantias = cesantias;
     }
 
-    public double getInteresesCesantias() {
-        return interesesCesantias;
+    public double getVacacional() {
+        return Vacacional;
     }
 
-    public void setInteresesCesantias(double interesesCesantias) {
-        this.interesesCesantias = interesesCesantias;
+    public void setVacacional(double Vacacional) {
+        this.Vacacional = Vacacional;
     }
 
-    public double getPrimaVacacional() {
-        return primaVacacional;
+    public double getPrima() {
+        return prima;
     }
 
-    public void setPrimaVacacional(double primaVacacional) {
-        this.primaVacacional = primaVacacional;
-    }
-
-    public double getPrimaServicios() {
-        return primaServicios;
-    }
-
-    public void setPrimaServicios(double primaServicios) {
-        this.primaServicios = primaServicios;
+    public void setPrima(double prima) {
+        this.prima = prima;
     }
 
     public double getPension() {
@@ -60,53 +61,40 @@ public class PrestacionesSociales extends JPanel {
     public void setPension(double pension) {
         this.pension = pension;
     }
-   
+
     public double getSalario() {
-    	return salario;
-    }
-    
-    public void setSalario (double salario) {
-    	this.salario = salario;
-    }
-    
-    public double getFechaInicio () {
-    	return fechaInicio;
-    }
-    
-    public void setFechaInicio (double fechaInicio) {
-    	this.fechaInicio = fechaInicio;
-    }
-    
-    public double getFechaVacaciones () {
-    	return fechaVacaciones;
-    }
-    
-    public void setFechaVacaciones (double fechaVacaciones) {
-    	this.fechaVacaciones = fechaVacaciones;
-    }
-    
-    public String getContrato() {
-    	return contrato;
-    }
-    
-    public void setContrato (String contrato) {
-    	this.contrato = contrato;
+        return salario;
     }
 
-    @Override
-    public String toString() {
-        return "PrestacionesSociales{" +
-                "cesantias=" + cesantias +
-                ", interesesCesantias=" + interesesCesantias +
-                ", primaVacacional=" + primaVacacional +
-                ", primaServicios=" + primaServicios +
-                ", pension=" + pension +
-                ", salario=" + salario +
-                ", fechaInicio=" + fechaInicio +
-                ", fechaVacaciones=" + fechaVacaciones +
-                ", contrato=" + contrato +
-                '}';
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
+
+    public String getContrato() {
+        return contrato;
+    }
+
+    public void setContrato(String contrato) {
+        this.contrato = contrato;
+    }
+
+    public String getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(String fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public String getFechaVacaciones() {
+        return fechaVacaciones;
+    }
+
+    public void setFechaVacaciones(String fechaVacaciones) {
+        this.fechaVacaciones = fechaVacaciones;
+    }
+
+
 
     // Metodos Adicionales
     public static double calcularCesantias(double salarioBase) {

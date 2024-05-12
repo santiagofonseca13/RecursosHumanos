@@ -1,13 +1,8 @@
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
 import java.awt.Color;
-import java.util.List;
 
 public class main extends JFrame {
 
@@ -71,7 +66,7 @@ public class main extends JFrame {
 		contentPane.add(login);
 		login.setVisible(false);
 		
-		interPreSociales = new InterPreSociales();
+		interPreSociales = new InterPreSociales(this);
 		interPreSociales.setBounds(10, 279, 500, 334);
 		contentPane.add(interPreSociales);
 		interPreSociales.setVisible(true);

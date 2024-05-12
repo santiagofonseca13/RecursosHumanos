@@ -14,7 +14,7 @@ public class login extends JPanel {
 	private JPasswordField jpassContraseña;
 	private JButton btnIngresar;
 	
-public main principal;
+	public main principal;
 	
 	public login(main principal) {
 		this();
@@ -78,6 +78,5 @@ public main principal;
 
 	protected void dispose() {
 		// TODO Auto-generated method stub
-		
 	}
 }

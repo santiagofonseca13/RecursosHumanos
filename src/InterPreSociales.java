@@ -1,10 +1,15 @@
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,34 +21,43 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 public class InterPreSociales extends JPanel {
+	
+	public List<PrestacionesSociales> DatosPres;
 
-	public List<Trabajador> Trabajador = new ArrayList<>();
+	public double cedula;
+	
 	public JTextField textFieldContrato;
 	public JTextField textFieldSalario;
 	public JTextField textFieldPensiones;
 	public JTextField textFieldFechaInicio;
 	public JTextField textFieldFechaVacaciones;
 	public JTextField textFieldCesantias;
-	private JTextField textFieldVacaciones;
-	private JTextField textFieldPrima;
+	public JTextField textFieldVacaciones;
+	public JTextField textFieldPrima;
+	public JComboBox comboBox;
+	
+	public main principal;
+	
+	public InterPreSociales(main principal) {
+		this();
+		this.principal = principal;
+	}
+	
 	/**
-	 * Prima
-Vacaciones
-FechaVacaciones
-FechaInicio
-
-	 * Create the panel.
+	 *  Create the panel.
 	 */
 	public InterPreSociales() {
 		setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Prestaciones", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 255)));
 		setLayout(null);
+
+		DatosPres = new ArrayList<>();
+		cargarDesdeArchivo();
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {" Seleccione:", "Administrador", "Contador", "Secretario", "Vigilante", "Asesor"}));
 		comboBox.setToolTipText("");
 		comboBox.setBounds(159, 23, 150, 22);
 		add(comboBox);
-		
 		JLabel lblCargo = new JLabel("Cargo:");
 
 		lblCargo.setBackground(Color.BLACK);
@@ -79,7 +93,7 @@ FechaInicio
 		lblVacaciones.setBounds(10, 271, 139, 20);
 		add(lblVacaciones);
 		
-		JLabel lblPrima = new JLabel("Prima:\r\n");
+		JLabel lblPrima = new JLabel("Prima:");
 		lblPrima.setBounds(10, 210, 139, 20);
 		add(lblPrima);
 		
@@ -128,9 +142,120 @@ FechaInicio
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				guardarDatos();
 			}
 		});
-		btnGuardar.setBounds(170, 302, 150, 23);
+		btnGuardar.setBounds(87, 302, 150, 23);
 		add(btnGuardar);
+	}
+	
+	
+	public void guardarDatos() {
+		boolean encontrado = false;
+		for (PrestacionesSociales PrestacionesSociales: DatosPres) {
+			if (PrestacionesSociales.getIdentificacion() == cedula) {
+	    		PrestacionesSociales.setCesantias(Double.parseDouble(textFieldCesantias.getText()));
+	        	PrestacionesSociales.setVacacional(Double.parseDouble(textFieldVacaciones.getText()));            		
+	        	PrestacionesSociales.setPrima(Double.parseDouble(textFieldPrima.getText()));
+	        	PrestacionesSociales.setPension(Double.parseDouble(textFieldPensiones.getText()));
+	        	PrestacionesSociales.setSalario(Double.parseDouble(textFieldSalario.getText()));
+	        	PrestacionesSociales.setContrato(textFieldContrato.getText());    	        	
+	        	PrestacionesSociales.setFechaInicio(textFieldFechaInicio.getText());
+	    		PrestacionesSociales.setFechaVacaciones(textFieldFechaVacaciones.getText());
+	    	    encontrado = true;
+	    		JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	        	break;
+			}
+        }
+		if (!encontrado) {
+    		PrestacionesSociales P1 = new PrestacionesSociales(
+    		cedula,Double.parseDouble(textFieldCesantias.getText()),
+    		Double.parseDouble(textFieldVacaciones.getText()),
+    		Double.parseDouble(textFieldPrima.getText()),
+    		Double.parseDouble(textFieldPensiones.getText()),
+    		Double.parseDouble(textFieldSalario.getText()),
+    		textFieldContrato.getText(),
+    		textFieldFechaInicio.getText(),
+    		textFieldFechaVacaciones.getText());
+    		DatosPres.add(P1);
+    		JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
+	    }
+		guardarEnArchivo();
+	}
+
+	public void guardarEnArchivo() {
+		 try (BufferedWriter escribir = new BufferedWriter(new FileWriter("PrestacionesSociales.txt"))) {
+	        	escribir.write("");
+	            for (PrestacionesSociales PrestacionesSociales : DatosPres) {
+	            	escribir.write(PrestacionesSociales.getIdentificacion()+"\t"+
+	            			PrestacionesSociales.getCesantias()+"\t"+
+	            			PrestacionesSociales.getFechaVacaciones()+"\t"+
+	            			PrestacionesSociales.getPrima()+"\t"+
+	            			PrestacionesSociales.getPension()+"\t"+
+	            			PrestacionesSociales.getSalario()+"\t"+
+	            			PrestacionesSociales.getContrato()+"\t"+
+	            			PrestacionesSociales.getFechaInicio()+"\t"+
+	            			PrestacionesSociales.getFechaVacaciones());
+	            	escribir.newLine();
+	            }
+	            escribir.close();
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            JOptionPane.showMessageDialog(this, "Error al guardar los datos.");
+	       }
+	}
+
+	public void cargarDesdeArchivo() {
+		try (BufferedReader leer = new BufferedReader(new FileReader("PrestacionesSociales.txt"))) {
+            String linea="";
+            while ((linea = leer.readLine()) != null) {
+                String[] datos = linea.split("\t");
+                if (datos.length == 9) {
+                	double identificacion = Double.parseDouble(datos[0]);
+                	double cesantias = Double.parseDouble(datos[1]);
+                	double Vacacional = Double.parseDouble(datos[2]);
+                	double prima = Double.parseDouble(datos[3]);
+                	double pension = Double.parseDouble(datos[4]);
+                	double salario = Double.parseDouble(datos[5]);
+                    String contrato = datos[6];
+                    String fechaInicio = datos[7];
+                    String fechaVacaciones = datos[8];
+
+                    PrestacionesSociales Ps = new PrestacionesSociales(identificacion, cesantias, Vacacional, prima, pension,
+                    		salario, contrato, fechaInicio, fechaVacaciones);
+                    DatosPres.add(Ps);
+                }
+            }
+        } catch (IOException e) {
+           System.out.println("Error al leer el archivo");
+        }
+	}
+	
+	public void cargarDatosPorCedula(double cedula) {
+	    for (PrestacionesSociales prestaciones : DatosPres) {
+	        if (prestaciones.getIdentificacion() == cedula) {
+	            textFieldCesantias.setText(String.valueOf(prestaciones.getCesantias()));
+	            textFieldVacaciones.setText(String.valueOf(prestaciones.getVacacional()));
+	            textFieldPrima.setText(String.valueOf(prestaciones.getPrima()));
+	            textFieldPensiones.setText(String.valueOf(prestaciones.getPension()));
+	            textFieldSalario.setText(String.valueOf(prestaciones.getSalario()));
+	            textFieldContrato.setText(prestaciones.getContrato());
+	            textFieldFechaInicio.setText(prestaciones.getFechaInicio());
+	            textFieldFechaVacaciones.setText(prestaciones.getFechaVacaciones());
+	            return; 
+	        }
+	    }
+	    limpiarCampos();
+	}
+	
+	private void limpiarCampos() {
+	    textFieldCesantias.setText("");
+	    textFieldVacaciones.setText("");
+	    textFieldPrima.setText("");
+	    textFieldPensiones.setText("");
+	    textFieldSalario.setText("");
+	    textFieldContrato.setText("");
+	    textFieldFechaInicio.setText("");
+	    textFieldFechaVacaciones.setText("");
 	}
 }

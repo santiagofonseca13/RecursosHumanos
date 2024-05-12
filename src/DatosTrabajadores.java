@@ -1,18 +1,13 @@
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JTextField;
-import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -22,8 +17,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class DatosTrabajadores extends JPanel {
 	
@@ -85,7 +78,9 @@ public class DatosTrabajadores extends JPanel {
             	String textoIdentificacion = textFieldIdentificacion.getText();
             	if (!textoIdentificacion.isEmpty()) {
             	    cedula = Double.parseDouble(textFieldIdentificacion.getText());
+            	    principal.interPreSociales.cedula  = Double.parseDouble(textFieldIdentificacion.getText()) ;
             	    cargarDatosPorCedula(cedula);
+            	    principal.interPreSociales.cargarDatosPorCedula(principal.interPreSociales.cedula);
             	} else {
             	}
             }
@@ -182,8 +177,8 @@ public class DatosTrabajadores extends JPanel {
 	            trabajador.setNumero(Integer.parseInt(textFieldCelular.getText()));
 	            
 	            encontrado = true;
-	            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
-	            break;
+	        	JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.");
+	        	break;
 	        }
 		}
 		if (!encontrado) {
@@ -272,10 +267,22 @@ public class DatosTrabajadores extends JPanel {
                 return;
             }
         }
+	    limpiarCampos();
     }
+    
+    private void limpiarCampos() {
+    	textFieldNombre.setText("");
+    	textFieldApellido.setText("");
+    	textFieldDireccion.setText("");
+    	textFieldCorreo.setText("");
+    	textFieldSeguro.setText("");
+    	textFieldCesantias.setText("");
+    	textFieldRH.setText("");
+    	textFieldEdad.setText("");
+    	textFieldCelular.setText("");
+	}
     
     public List<Trabajador> getLista(){
     	return listaTrabajadores;
     }	
-
 }
