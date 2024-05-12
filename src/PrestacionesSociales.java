@@ -1,20 +1,24 @@
 import javax.swing.JPanel;
 
 public class PrestacionesSociales extends JPanel {
-	private double cesantias, interesesCesantias, primaVacacional, primaServicios, pension;
-
+	private double cesantias, interesesCesantias, primaVacacional, primaServicios, pension, salario, fechaInicio, fechaVacaciones;
+	private String contrato;
 	/**
 	 * Create the panel.
 	 */
 	public PrestacionesSociales() {
 
 	}
-	public PrestacionesSociales(double cesantias, double interesesCesantias, double primaVacacional, double primaServicios, double pension) {
+	public PrestacionesSociales(double cesantias, double interesesCesantias, double primaVacacional, double primaServicios, double pension, double salario, double fechaInicio, double fechaVacaciones, String contrato) {
         this.cesantias = cesantias;
         this.interesesCesantias = interesesCesantias;
         this.primaVacacional = primaVacacional;
         this.primaServicios = primaServicios;
         this.pension = pension;
+        this.salario = salario;
+        this.fechaInicio = fechaInicio;
+        this.fechaVacaciones = fechaVacaciones;
+        this.contrato = contrato;
     }
 
     public double getCesantias() {
@@ -56,6 +60,38 @@ public class PrestacionesSociales extends JPanel {
     public void setPension(double pension) {
         this.pension = pension;
     }
+   
+    public double getSalario() {
+    	return salario;
+    }
+    
+    public void setSalario (double salario) {
+    	this.salario = salario;
+    }
+    
+    public double getFechaInicio () {
+    	return fechaInicio;
+    }
+    
+    public void setFechaInicio (double fechaInicio) {
+    	this.fechaInicio = fechaInicio;
+    }
+    
+    public double getFechaVacaciones () {
+    	return fechaVacaciones;
+    }
+    
+    public void setFechaVacaciones (double fechaVacaciones) {
+    	this.fechaVacaciones = fechaVacaciones;
+    }
+    
+    public String getContrato() {
+    	return contrato;
+    }
+    
+    public void setContrato (String contrato) {
+    	this.contrato = contrato;
+    }
 
     @Override
     public String toString() {
@@ -65,6 +101,10 @@ public class PrestacionesSociales extends JPanel {
                 ", primaVacacional=" + primaVacacional +
                 ", primaServicios=" + primaServicios +
                 ", pension=" + pension +
+                ", salario=" + salario +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaVacaciones=" + fechaVacaciones +
+                ", contrato=" + contrato +
                 '}';
     }
 

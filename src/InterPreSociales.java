@@ -39,7 +39,7 @@ FechaInicio
 		setLayout(null);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {" Seleccione:", "", "Administrador", "Contador", "Secretario", "Vigilante", "Asesor"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {" Seleccione:", "Administrador", "Contador", "Secretario", "Vigilante", "Asesor"}));
 		comboBox.setToolTipText("");
 		comboBox.setBounds(159, 23, 150, 22);
 		add(comboBox);
