@@ -25,6 +25,7 @@ public class InterPreSociales extends JPanel {
 	public List<PrestacionesSociales> DatosPres;
 
 	public double cedula;
+	public String cargo;
 	
 	public JTextField textFieldContrato;
 	public JTextField textFieldSalario;
@@ -54,6 +55,12 @@ public class InterPreSociales extends JPanel {
 		cargarDesdeArchivo();
 		
 		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cargo = (String) comboBox.getSelectedItem();
+            }
+        });
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {" Seleccione:", "Administrador", "Contador", "Secretario", "Vigilante", "Asesor"}));
 		comboBox.setToolTipText("");
 		comboBox.setBounds(159, 23, 150, 22);
@@ -154,6 +161,7 @@ public class InterPreSociales extends JPanel {
 		boolean encontrado = false;
 		for (PrestacionesSociales PrestacionesSociales: DatosPres) {
 			if (PrestacionesSociales.getIdentificacion() == cedula) {
+				PrestacionesSociales.setCargo(cargo);
 	    		PrestacionesSociales.setCesantias(Double.parseDouble(textFieldCesantias.getText()));
 	        	PrestacionesSociales.setVacacional(Double.parseDouble(textFieldVacaciones.getText()));            		
 	        	PrestacionesSociales.setPrima(Double.parseDouble(textFieldPrima.getText()));
@@ -176,7 +184,7 @@ public class InterPreSociales extends JPanel {
     		Double.parseDouble(textFieldSalario.getText()),
     		textFieldContrato.getText(),
     		textFieldFechaInicio.getText(),
-    		textFieldFechaVacaciones.getText());
+    		textFieldFechaVacaciones.getText(), cargo);
     		DatosPres.add(P1);
     		JOptionPane.showMessageDialog(this, "Datos guardados correctamente.");
 	    }
@@ -189,13 +197,14 @@ public class InterPreSociales extends JPanel {
 	            for (PrestacionesSociales PrestacionesSociales : DatosPres) {
 	            	escribir.write(PrestacionesSociales.getIdentificacion()+"\t"+
 	            			PrestacionesSociales.getCesantias()+"\t"+
-	            			PrestacionesSociales.getFechaVacaciones()+"\t"+
+	            			PrestacionesSociales.getVacacional()+"\t"+
 	            			PrestacionesSociales.getPrima()+"\t"+
 	            			PrestacionesSociales.getPension()+"\t"+
 	            			PrestacionesSociales.getSalario()+"\t"+
 	            			PrestacionesSociales.getContrato()+"\t"+
 	            			PrestacionesSociales.getFechaInicio()+"\t"+
-	            			PrestacionesSociales.getFechaVacaciones());
+	            			PrestacionesSociales.getFechaVacaciones()+"\t"+
+	            			PrestacionesSociales.getCargo());
 	            	escribir.newLine();
 	            }
 	            escribir.close();
@@ -210,7 +219,7 @@ public class InterPreSociales extends JPanel {
             String linea="";
             while ((linea = leer.readLine()) != null) {
                 String[] datos = linea.split("\t");
-                if (datos.length == 9) {
+                if (datos.length == 10) {
                 	double identificacion = Double.parseDouble(datos[0]);
                 	double cesantias = Double.parseDouble(datos[1]);
                 	double Vacacional = Double.parseDouble(datos[2]);
@@ -220,9 +229,10 @@ public class InterPreSociales extends JPanel {
                     String contrato = datos[6];
                     String fechaInicio = datos[7];
                     String fechaVacaciones = datos[8];
+                    String cargo = datos[9];
 
                     PrestacionesSociales Ps = new PrestacionesSociales(identificacion, cesantias, Vacacional, prima, pension,
-                    		salario, contrato, fechaInicio, fechaVacaciones);
+                    		salario, contrato, fechaInicio, fechaVacaciones, cargo);
                     DatosPres.add(Ps);
                 }
             }
@@ -242,6 +252,7 @@ public class InterPreSociales extends JPanel {
 	            textFieldContrato.setText(prestaciones.getContrato());
 	            textFieldFechaInicio.setText(prestaciones.getFechaInicio());
 	            textFieldFechaVacaciones.setText(prestaciones.getFechaVacaciones());
+	            comboBox.setSelectedItem(prestaciones.getCargo());
 	            return; 
 	        }
 	    }
@@ -249,6 +260,7 @@ public class InterPreSociales extends JPanel {
 	}
 	
 	private void limpiarCampos() {
+		comboBox.setSelectedIndex(0);
 	    textFieldCesantias.setText("");
 	    textFieldVacaciones.setText("");
 	    textFieldPrima.setText("");
