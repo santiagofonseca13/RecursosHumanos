@@ -1,3 +1,7 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JPanel;
 
 public class PrestacionesSociales extends JPanel {
@@ -108,14 +112,23 @@ public class PrestacionesSociales extends JPanel {
         // Supongamos que las cesantías son el 8% del salario base
         return salarioBase * 0.08;
     }
+    
+    public static double calcularPrima(double salarioBase) {
+        // Calcula la prima basada en el salario del empleado
+        return salarioBase * 0.0833;
+    }
 
     public static double calcularInteresesCesantias(double cesantias) {
         // Supongamos que los intereses sobre cesantías son el 12% de las cesantías acumuladas
         return cesantias * 0.12;
     }
     
-    public void calcularPension(double salarioBase) {
+    public static double calcularPension(double salarioBase) {
         // Supongamos que la contribución a la pensión es el 10% del salario base
-        this.pension = salarioBase * 0.10;
+        return salarioBase * 0.10;
+    }
+
+    public void calcularDiasVacaciones(String fechaInicio, String fechaVacaciones) {
+        
     }
 }
