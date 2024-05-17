@@ -6,6 +6,8 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -35,7 +37,6 @@ public class InterPreSociales extends JPanel {
     public JTextField textFieldFechaInicio;
     public JTextField textFieldFechaVacaciones;
     public JTextField textFieldCesantias;
-    public JTextField textFieldVacaciones;
     public JTextField textFieldPrima;
     public JComboBox<String> comboBox;
     
@@ -60,26 +61,26 @@ public class InterPreSociales extends JPanel {
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String cargoSeleccionado = (String) comboBox.getSelectedItem();
-                if (!cargoSeleccionado.equals("Seleccione")) {
-                    switch (cargoSeleccionado) {
+                cargo = (String) comboBox.getSelectedItem();
+                if (!cargo.equals("Seleccione")) {
+                    switch (cargo) {
                         case "Administrador":
-                            textFieldSalario.setText("3000000"); // Definir salario para Administrador
+                            textFieldSalario.setText("3000000");
                             break;
                         case "Contador":
-                            textFieldSalario.setText("2800000"); // Definir salario para Contador
+                            textFieldSalario.setText("2800000");
                             break;
                         case "Secretario":
-                            textFieldSalario.setText("1900000"); // Definir salario para Secretario
+                            textFieldSalario.setText("1900000");
                             break;
                         case "Vigilante":
-                            textFieldSalario.setText("1700000"); // Definir salario para Vigilante
+                            textFieldSalario.setText("1700000");
                             break;
                         case "Asesor":
-                            textFieldSalario.setText("1800000"); // Definir salario para Asesor
+                            textFieldSalario.setText("1800000");
                             break;
                     }
-                    calcularPrestaciones(Double.parseDouble(textFieldSalario.getText())); // Calcular prestaciones
+                    calcularPrestaciones(Double.parseDouble(textFieldSalario.getText()));
                 } else {
                 }
             }
@@ -117,10 +118,6 @@ public class InterPreSociales extends JPanel {
         lblCesantias.setBounds(10, 179, 139, 20);
         add(lblCesantias);
         
-        JLabel lblVacaciones = new JLabel("Vacaciones:");
-        lblVacaciones.setBounds(10, 271, 139, 20);
-        add(lblVacaciones);
-        
         JLabel lblPrima = new JLabel("Prima:");
         lblPrima.setBounds(10, 210, 139, 20);
         add(lblPrima);
@@ -132,7 +129,18 @@ public class InterPreSociales extends JPanel {
 
         textFieldSalario = new JTextField();
         textFieldSalario.setColumns(10);
-        textFieldSalario.setBounds(159, 148, 150, 20);
+        textFieldSalario.setBounds(159, 148, 329, 20);
+        textFieldSalario.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+            	if (!textFieldSalario.getText().isEmpty()) {
+                    double salario = Double.parseDouble(textFieldSalario.getText());
+                    calcularPrestaciones(salario);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un salario antes de calcular las prestaciones.");
+                }
+            }
+        });
         add(textFieldSalario);
         
       
@@ -158,12 +166,6 @@ public class InterPreSociales extends JPanel {
         textFieldCesantias.setEditable(false); 
         add(textFieldCesantias);
 
-        textFieldVacaciones = new JTextField();
-        textFieldVacaciones.setColumns(10);
-        textFieldVacaciones.setBounds(159, 271, 329, 20);
-        textFieldVacaciones.setEditable(false); 
-        add(textFieldVacaciones);
-
         textFieldPrima = new JTextField();
         textFieldPrima.setColumns(10);
         textFieldPrima.setBounds(159, 210, 329, 20);
@@ -177,33 +179,17 @@ public class InterPreSociales extends JPanel {
                 guardarDatos();
             }
         });
-        btnGuardar.setBounds(403, 302, 85, 23);
+        btnGuardar.setBounds(224, 271, 85, 23);
         add(btnGuardar);
-
-        JButton btnCalcular = new JButton("Calcular Prestaciones");
-        btnCalcular.setHorizontalAlignment(SwingConstants.LEADING);
-        btnCalcular.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (!textFieldSalario.getText().isEmpty()) {
-                    double salario = Double.parseDouble(textFieldSalario.getText());
-                    calcularPrestaciones(salario);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un salario antes de calcular las prestaciones.");
-                }
-            }
-        });
-        btnCalcular.setBounds(321, 147, 167, 23);
-        add(btnCalcular);
 
         textFieldSalario.setText("0"); 
         textFieldFechaInicio.setText("0"); 
         textFieldFechaVacaciones.setText("0"); 
         textFieldCesantias.setText("0");
         textFieldPensiones.setText("0");
-        textFieldVacaciones.setText("0");
         textFieldPrima.setText("0");
         
-        calcularPrestaciones(0); // Inicializar con valores por defecto
+        calcularPrestaciones(0);
     }
 
     private void calcularPrestaciones(double salarioBase) {
@@ -217,8 +203,7 @@ public class InterPreSociales extends JPanel {
         for (PrestacionesSociales prestaciones : DatosPres) {
             if (prestaciones.getIdentificacion() == cedula) {
                 prestaciones.setCargo(cargo);
-                prestaciones.setCesantias(Double.parseDouble(textFieldCesantias.getText()));
-                prestaciones.setVacacional(Double.parseDouble(textFieldVacaciones.getText()));                    
+                prestaciones.setCesantias(Double.parseDouble(textFieldCesantias.getText()));                 
                 prestaciones.setPrima(Double.parseDouble(textFieldPrima.getText()));
                 prestaciones.setPension(Double.parseDouble(textFieldPensiones.getText()));
                 prestaciones.setSalario(Double.parseDouble(textFieldSalario.getText()));
@@ -233,7 +218,6 @@ public class InterPreSociales extends JPanel {
         if (!encontrado) {
             PrestacionesSociales prestaciones = new PrestacionesSociales(
                     cedula,Double.parseDouble(textFieldCesantias.getText()),
-                    Double.parseDouble(textFieldVacaciones.getText()),
                     Double.parseDouble(textFieldPrima.getText()),
                     Double.parseDouble(textFieldPensiones.getText()),
                     Double.parseDouble(textFieldSalario.getText()),
@@ -252,7 +236,6 @@ public class InterPreSociales extends JPanel {
                 for (PrestacionesSociales prestaciones : DatosPres) {
                     escribir.write(prestaciones.getIdentificacion()+"\t"+
                             prestaciones.getCesantias()+"\t"+
-                            prestaciones.getVacacional()+"\t"+
                             prestaciones.getPrima()+"\t"+
                             prestaciones.getPension()+"\t"+
                             prestaciones.getSalario()+"\t"+
@@ -274,19 +257,18 @@ public class InterPreSociales extends JPanel {
             String linea="";
             while ((linea = leer.readLine()) != null) {
                 String[] datos = linea.split("\t");
-                if (datos.length == 10) {
+                if (datos.length == 9) {
                     double identificacion = Double.parseDouble(datos[0]);
                     double cesantias = Double.parseDouble(datos[1]);
-                    double Vacacional = Double.parseDouble(datos[2]);
-                    double prima = Double.parseDouble(datos[3]);
-                    double pension = Double.parseDouble(datos[4]);
-                    double salario = Double.parseDouble(datos[5]);
-                    String contrato = datos[6];
-                    String fechaInicio = datos[7];
-                    String fechaVacaciones = datos[8];
-                    String cargo = datos[9];
+                    double prima = Double.parseDouble(datos[2]);
+                    double pension = Double.parseDouble(datos[3]);
+                    double salario = Double.parseDouble(datos[4]);
+                    String contrato = datos[5];
+                    String fechaInicio = datos[6];
+                    String fechaVacaciones = datos[7];
+                    String cargo = datos[8];
 
-                    PrestacionesSociales Ps = new PrestacionesSociales(identificacion, cesantias, Vacacional, prima, pension,
+                    PrestacionesSociales Ps = new PrestacionesSociales(identificacion, cesantias, prima, pension,
                             salario, contrato, fechaInicio, fechaVacaciones, cargo);
                     DatosPres.add(Ps);
                 }
@@ -300,7 +282,6 @@ public class InterPreSociales extends JPanel {
         for (PrestacionesSociales prestaciones : DatosPres) {
             if (prestaciones.getIdentificacion() == cedula) {
                 textFieldCesantias.setText(String.valueOf(prestaciones.getCesantias()));
-                textFieldVacaciones.setText(String.valueOf(prestaciones.getVacacional()));
                 textFieldPrima.setText(String.valueOf(prestaciones.getPrima()));
                 textFieldPensiones.setText(String.valueOf(prestaciones.getPension()));
                 textFieldSalario.setText(String.valueOf(prestaciones.getSalario()));
@@ -317,7 +298,6 @@ public class InterPreSociales extends JPanel {
     private void limpiarCampos() {
         comboBox.setSelectedIndex(0);
         textFieldCesantias.setText("");
-        textFieldVacaciones.setText("");
         textFieldPrima.setText("");
         textFieldPensiones.setText("");
         textFieldSalario.setText("");

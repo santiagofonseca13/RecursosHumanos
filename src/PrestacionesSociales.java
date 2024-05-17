@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.swing.JPanel;
 
 public class PrestacionesSociales extends JPanel {
-	private double identificacion, cesantias, Vacacional, prima, pension, salario;
+	private double identificacion, cesantias, prima, pension, salario;
 	private String contrato, fechaInicio, fechaVacaciones, cargo;
 	/**
 	 * Create the panel.
@@ -14,10 +14,9 @@ public class PrestacionesSociales extends JPanel {
 
 	}
 
-    public PrestacionesSociales(double identificacion, double cesantias, double Vacacional, double prima, double pension, double salario, String contrato, String fechaInicio, String fechaVacaciones, String cargo) {
+    public PrestacionesSociales(double identificacion, double cesantias, double prima, double pension, double salario, String contrato, String fechaInicio, String fechaVacaciones, String cargo) {
         this.identificacion = identificacion;
         this.cesantias = cesantias;
-        this.Vacacional = Vacacional;
         this.prima = prima;
         this.pension = pension;
         this.salario = salario;
@@ -41,14 +40,6 @@ public class PrestacionesSociales extends JPanel {
 
     public void setCesantias(double cesantias) {
         this.cesantias = cesantias;
-    }
-
-    public double getVacacional() {
-        return Vacacional;
-    }
-
-    public void setVacacional(double Vacacional) {
-        this.Vacacional = Vacacional;
     }
 
     public double getPrima() {
