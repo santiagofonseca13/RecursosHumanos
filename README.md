@@ -24,18 +24,6 @@ datos_trabajadores.txt: Archivo de almacenamiento para la información de nómin
 
 PrestacionesSociales.txt: Reportes generados por el sistema.
 
-🔧 Instrucciones de Ejecución
-Clona el proyecto:
-
-Bash
-
-git clone https://github.com/santiagofonseca13/RecursosHumanos.git
-Importa el proyecto en tu IDE preferido como un proyecto Java estándar.
-
-Asegúrate de que los archivos .txt estén en la raíz del proyecto para que el sistema pueda leerlos correctamente.
-
-Ejecuta la clase principal (Main.java).
-
 🧠 Aprendizajes Clave
 Programación Orientada a Objetos (POO): Aplicación de conceptos como encapsulamiento, herencia y polimorfismo.
 
